@@ -1,0 +1,8 @@
+pydantic==2.11.3
+pydantic-ai==0.0.55
+openai==1.72.0
+python-dotenv==1.1.0
+firecrawl-py==1.15.0
+sqlalchemy==2.0.25
+fastapi==0.108.0
+langgraph==0.2.64
