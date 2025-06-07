@@ -181,30 +181,48 @@ def get_conversation_followup_workflow(model_name="o3"):
 # Example usage
 if __name__ == "__main__":
     import asyncio
-    # Import chat-retrieval using importlib since filename has hyphen
-    import importlib.util
-    spec = importlib.util.spec_from_file_location("chat_retrieval", "chat-retrieval.py")
-    chat_retrieval = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(chat_retrieval)
-    get_user_conversations_for_workflow = chat_retrieval.get_user_conversations_for_workflow
     
     async def test_workflow():
         print("🚀 Starting Intelligent Conversation Follow-Up System")
         print("=" * 60)
         
-        # Get real user conversations from database
+        # Read conversation from raw_conversation.txt file
         user_id = "Uojc2mPrSHXzWaGkqRtBsT8xCYb2"  # Default user ID
-        print(f"🔍 Fetching conversations for user: {user_id}")
+        print(f"🔍 Reading conversation from raw_conversation.txt file")
         
-        real_conversations = get_user_conversations_for_workflow(
-            user_id=user_id,
-            days=30,
-            min_conversations=5
-        )
-        
-        if not real_conversations:
-            print("❌ No sufficient conversation data found. Using sample data for testing.")
-            # Fallback to sample data if no real conversations
+        try:
+            with open("raw_conversation.txt", "r", encoding="utf-8") as file:
+                raw_conversation_content = file.read()
+            
+            # Convert the timestamp-formatted conversation to simple dialogue format
+            lines = raw_conversation_content.split('\n')
+            conversation_parts = []
+            current_conversation = []
+            
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+                    
+                # Extract the actual message content from timestamp format
+                if "] Agent:" in line:
+                    message = line.split("] Agent:", 1)[1].strip()
+                    current_conversation.append(f"agent: {message}")
+                elif "] User:" in line:
+                    message = line.split("] User:", 1)[1].strip()
+                    current_conversation.append(f"user: {message}")
+            
+            # Join all conversation parts into one big conversation
+            if current_conversation:
+                real_conversations = ["\n".join(current_conversation)]
+                print(f"✅ Successfully loaded conversation with {len(current_conversation)} messages")
+            else:
+                raise Exception("No valid conversation messages found")
+                
+        except Exception as e:
+            print(f"❌ Error reading raw_conversation.txt: {e}")
+            print("📝 Using sample data for testing.")
+            # Fallback to sample data if file reading fails
             real_conversations = [
                 "user: What is a turnpike? I've been wondering about this for a while.\nagent: A turnpike is a toll road, especially in the northeastern United States. They're called turnpikes because historically, they had gates that would turn to let traffic through after paying the toll.\nuser: Oh that's really interesting! I never knew the etymology. What about blind spots when driving?\nagent: Blind spots are areas around your vehicle that you cannot see in your mirrors or through your windows directly. They're typically located to the sides and rear of your vehicle.\nuser: Got it, that's very helpful! I'm learning so much about driving today."
             ]

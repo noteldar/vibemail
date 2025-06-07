@@ -88,6 +88,7 @@ CORE REQUIREMENTS:
 - Proactive (add new value, don't just follow up)
 - Show genuine care for the user
 - Include detailed context and justification for each starter
+- Use proper spacing around dashes (e.g., "word — word" not "word—word")
 
 VALUE CATEGORIES (choose one for each starter):
 - 🎯 Useful: reminders, insights, professional advice
@@ -303,6 +304,12 @@ RESEARCH INTEGRATION:
 - Connect research findings to the user's conversation history
 
 Generate conversation starters that would make this user want to reopen the app immediately. Focus on creating genuine value, curiosity, and personal connection based on their demonstrated interests and conversation patterns. Each starter must have an appropriate emotional mood that enhances user engagement and matches the content's intended psychological impact.
+
+FORMATTING REQUIREMENTS:
+- Ensure proper spacing around all dashes and punctuation
+- Use " — " (space-dash-space) instead of "—" (dash without spaces)
+- Use " - " (space-hyphen-space) for lists or breaks
+- Example: "CAT's 2024 turbo-upgrade cuts fuel 8% — worth a peek for your Pete?"
 """
         
         result = await agent.run(prompt, deps=deps)
