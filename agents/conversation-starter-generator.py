@@ -48,6 +48,9 @@ class ConversationStarter(BaseModel):
     # Engagement Metrics
     predicted_engagement_score: int  # Predicted engagement score 1-10
     personalization_level: str  # How personalized this is (High/Medium/Low)
+    
+    # Emotional Tone
+    mood: str  # The emotional mood of the conversation starter: Cheerful, Reflective, Gloomy, Humorous, Melancholy, Idyllic, Whimsical, Romantic, Mysterious, Ominous, Calm, Lighthearted, Hopeful, Angry, Fearful, Tense, Lonely
 
 
 class ConversationStarterList(BaseModel):
@@ -256,6 +259,27 @@ For each of the 30 conversation starters, you must provide ALL of these fields:
 13. **value_category**: "Useful", "Funny", "Intriguing", or "Insightful"
 14. **predicted_engagement_score**: Score 1-10 based on personalization and appeal
 15. **personalization_level**: "High", "Medium", or "Low"
+16. **mood**: The emotional mood of the conversation starter (see MOOD CATEGORIES below)
+
+MOOD CATEGORIES:
+Choose the most appropriate emotional mood for each conversation starter:
+- **Cheerful**: Upbeat, positive, energetic
+- **Reflective**: Thoughtful, contemplative, introspective
+- **Gloomy**: Somber, pessimistic, downcast
+- **Humorous**: Funny, witty, playful
+- **Melancholy**: Wistful, nostalgic, bittersweet
+- **Idyllic**: Peaceful, serene, harmonious
+- **Whimsical**: Playful, fanciful, quirky
+- **Romantic**: Loving, affectionate, intimate
+- **Mysterious**: Enigmatic, intriguing, secretive
+- **Ominous**: Foreboding, threatening, dark
+- **Calm**: Tranquil, composed, relaxed
+- **Lighthearted**: Carefree, cheerful, easy-going
+- **Hopeful**: Optimistic, encouraging, positive
+- **Angry**: Frustrated, irritated, indignant
+- **Fearful**: Worried, anxious, concerned
+- **Tense**: Stressful, nervous, on-edge
+- **Lonely**: Isolated, solitary, yearning for connection
 
 PSYCHOLOGICAL ANALYSIS REQUIRED:
 For each starter, analyze:
@@ -263,6 +287,14 @@ For each starter, analyze:
 - How does this connect to their demonstrated interests?
 - What curiosity gap or value proposition will drive re-engagement?
 - Why would they prioritize opening the app to respond to this?
+- What emotional mood best captures the feeling this starter should evoke?
+
+MOOD SELECTION STRATEGY:
+Consider the user's original conversation tone and the desired emotional response:
+- Match the user's demonstrated emotional preferences from their conversation history
+- Choose moods that complement the value category (e.g., Humorous for funny content, Reflective for deep insights)
+- Consider the psychological impact of the mood on user engagement
+- Balance variety across different moods to provide emotional diversity
 
 RESEARCH INTEGRATION:
 - Use deep_research for at least 15 of the 30 starters
@@ -270,7 +302,7 @@ RESEARCH INTEGRATION:
 - Always provide sources and explain why the research is relevant
 - Connect research findings to the user's conversation history
 
-Generate conversation starters that would make this user want to reopen the app immediately. Focus on creating genuine value, curiosity, and personal connection based on their demonstrated interests and conversation patterns.
+Generate conversation starters that would make this user want to reopen the app immediately. Focus on creating genuine value, curiosity, and personal connection based on their demonstrated interests and conversation patterns. Each starter must have an appropriate emotional mood that enhances user engagement and matches the content's intended psychological impact.
 """
         
         result = await agent.run(prompt, deps=deps)

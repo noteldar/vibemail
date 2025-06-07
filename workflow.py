@@ -125,6 +125,7 @@ def get_conversation_followup_workflow(model_name="o3"):
         for starter in state["conversation_starters"][:10]:
             print(f"\n{starter.rank}. {starter.starter}")
             print(f"   🏷️  Category: {starter.value_category}")
+            print(f"   🎭 Mood: {starter.mood}")
             print(f"   📊 Engagement Score: {starter.predicted_engagement_score}/10")
             print(f"   🎯 Personalization: {starter.personalization_level}")
             print(f"   💭 Context: {starter.conversation_context}")
@@ -146,7 +147,7 @@ def get_conversation_followup_workflow(model_name="o3"):
             print(f"\n... and {len(state['conversation_starters']) - 10} more conversation starters available")
             print("\n📈 SUMMARY OF REMAINING STARTERS:")
             for starter in state["conversation_starters"][10:15]:
-                print(f"   {starter.rank}. {starter.starter} ({starter.value_category}, {starter.predicted_engagement_score}/10)")
+                print(f"   {starter.rank}. {starter.starter} ({starter.value_category}, {starter.mood}, {starter.predicted_engagement_score}/10)")
             if len(state["conversation_starters"]) > 15:
                 print(f"   ... and {len(state['conversation_starters']) - 15} more")
 
