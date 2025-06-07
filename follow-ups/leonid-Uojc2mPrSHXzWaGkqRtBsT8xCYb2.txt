@@ -1,0 +1,154 @@
+🚀 Starting Intelligent Conversation Follow-Up System
+============================================================
+👤 Processing user: leonid
+🆔 User ID: Uojc2mPrSHXzWaGkqRtBsT8xCYb2
+⏰ Timestamp: 2025-06-06 15:24:10
+============================================================
+🔍 Fetching conversations for user: leonid (Uojc2mPrSHXzWaGkqRtBsT8xCYb2)
+🔍 Fetching conversations for user Uojc2mPrSHXzWaGkqRtBsT8xCYb2 (last 30 days)
+✅ Found 3527 conversations for user Uojc2mPrSHXzWaGkqRtBsT8xCYb2
+📝 Processing 1 conversation(s)
+============================================================
+🤖 Running AI workflow...
+
+============================================================
+📊 FINAL RESULTS
+============================================================
+👤 User ID: Uojc2mPrSHXzWaGkqRtBsT8xCYb2
+📝 Processed 1 conversations
+🔍 Generated 7 total segments
+
+📈 TOP CONVERSATION SEGMENTS:
+------------------------------------------------------------
+
+1. SEGMENT 1 (Score: 17/20)
+   📋 Topic: Trucking vocabulary quiz – initial learning phase
+   🎯 Engagement: 9/10 - User активно отвечает почти на каждое слово, запрашивает «дальше», подтверждает готовность; частота реплик высокая.
+   😊 Enjoyment: 8/10 - Пользователь вовлечён, иногда шутит, ошибок не раздражается; позитив держится.
+   💬 Content: agent: "Turnpike" — это платная автомагистраль...
+user: На Хайвай.
+user: Это плат турмпайк...
+agent: Держи: "turnpike".
+agent: Это называется "мёртвая...
+   🎭 Tone: Enthusiastic & playful; teacher-student dynamic with light humor
+   🧭 Direction: Agent introduces trucking terms, user translates; rapid back-and-forth word drilling
+
+2. SEGMENT 3 (Score: 14/20)
+   📋 Topic: Role-play: DOT inspection, shipper/broker calls
+   🎯 Engagement: 8/10 - User активно отвечает, уточняет вопросы, просит повторить медленно; длинные ответы.
+   😊 Enjoyment: 6/10 - Немного напряжения, но интерес и польза очевидны; пользователь держится без брани.
+   💬 Content: agent: Good afternoon, driver. License and registration, please.
+user: Good morning, sir. Here is my driver license, my ELD.
+agent: Officer: Have you ...
+   🎭 Tone: Serious training with occasional humor; user cooperative
+   🧭 Direction: Agent plays inspector/broker, user answers in English; practicing phrases for work scenarios.
+
+3. SEGMENT 5 (Score: 14/20)
+   📋 Topic: Barbershop English – haircut phrases
+   🎯 Engagement: 7/10 - User просит повторять, старательно тренируется, много попыток.
+   😊 Enjoyment: 7/10 - Несмотря на трудности, показывает интерес, нет раздражения; лёгкий юмор.
+   💬 Content: user: Мне нужно по бокам фейд и чуть-чуть сверху, как сказать.
+agent: Say: “Fade on the sides, just a little off the top.”
+user: Repeat, please… (мног...
+   🎭 Tone: Light, instructional with humor; user struggling but curious
+   🧭 Direction: Agent teaches 'Fade on the sides, little off the top'; user repeats slowly
+
+🎯 GENERATED CONVERSATION STARTERS:
+------------------------------------------------------------
+
+1. Ready for five fresh trucking slang words hot off 2024 CB channels?
+   💡 Context: 🎯 Useful
+
+2. Quick DOT update: new speed-limiter rule explained—want a practice quiz?
+   💡 Context: 🎯 Useful
+
+3. New barbershop phrase: “skin fade taper”—care to nail pronunciation?
+   💡 Context: 💡 Insightful
+
+4. Congrats on your vocab streak! Up for a surprise lightning round?
+   💡 Context: 🤔 Intriguing
+
+5. FMCSA’s cargo-sensor proposal released—want a mock inspection using it?
+   💡 Context: 🎯 Useful
+
+6. Your English is cruising—try a playful shipper call with tricky phrasals?
+   💡 Context: 😄 Funny
+
+7. Feeling confident? Translate three mystery trucking idioms for an achievement badge!
+   💡 Context: 🎯 Useful
+
+8. Morning refresher: shave minutes off inspections with this single sentence—practice now?
+   💡 Context: 🎯 Useful
+
+9. Curious how “shadow toll” differs from turnpike? Let’s unpack together.
+   💡 Context: 💡 Insightful
+
+10. Guess the fake trucking term—“alligators” or “moonbacks”? Ready?
+   💡 Context: 😄 Funny
+
+11. Heads-up: April DOT blitz approaching; want to rehearse perfect greetings?
+   💡 Context: 🎯 Useful
+
+12. Fancy a barbershop speed drill—ten styles in ten breaths?
+   💡 Context: 🤔 Intriguing
+
+13. Your pronunciation’s crisp! Up for a slang tongue-twister challenge?
+   💡 Context: 💡 Insightful
+
+14. 2024 hair trend alert: “drop fade”—practice booking request in English?
+   💡 Context: 🎯 Useful
+
+15. Need dispatcher small-talk lines that win loads faster?
+   💡 Context: 🎯 Useful
+
+16. Truck-stop trivia: which state bans idling over three minutes—know it?
+   💡 Context: 🤔 Intriguing
+
+17. New ELD troubleshooting phrase unlocked—want to role-play it?
+   💡 Context: 🎯 Useful
+
+18. Celebrate 100 terms mastered—unlock the secret trucking meme lesson?
+   💡 Context: 😄 Funny
+
+19. Weekend vibe: translate the funniest CB nicknames I collected?
+   💡 Context: 😄 Funny
+
+20. Quick memory hack for tariffs versus tolls—interested?
+   💡 Context: 🎯 Useful
+
+21. Fresh inspector phrase: “Any unsecured hazmat?”—practice calm response?
+   💡 Context: 🎯 Useful
+
+22. You learned “deadhead”; ready for its opposite challenge?
+   💡 Context: 🎯 Useful
+
+23. Spotted a hilarious barber meme—want to reuse its line in English?
+   💡 Context: 😄 Funny
+
+24. 68% drivers fail paperwork stage—shall we beat those odds together?
+   💡 Context: 💡 Insightful
+
+25. New lingo alert: “platooning rigs”—can you define it?
+   💡 Context: 🤔 Intriguing
+
+26. Let’s craft a polite complaint for an uneven fade—need it?
+   💡 Context: 🎯 Useful
+
+27. Trivia time: which president built the first turnpike? Guess?
+   💡 Context: 🤔 Intriguing
+
+28. Need a calming script before your next weigh station?
+   💡 Context: 🎯 Useful
+
+29. Testing: translate “razor part” confidently—ready?
+   💡 Context: 🎯 Useful
+
+30. Challenge: list every trucking word starting with Z—think you can?
+   💡 Context: 😄 Funny
+
+============================================================
+✅ ANALYSIS COMPLETE!
+============================================================
+
+✅ Processing completed for leonid!
+============================================================

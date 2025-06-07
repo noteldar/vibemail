@@ -1,0 +1,154 @@
+🚀 Starting Intelligent Conversation Follow-Up System
+============================================================
+👤 Processing user: almas
+🆔 User ID: uFdp6q7Co4VXBboBZGOS9Pi2OuG3
+⏰ Timestamp: 2025-06-06 15:31:45
+============================================================
+🔍 Fetching conversations for user: almas (uFdp6q7Co4VXBboBZGOS9Pi2OuG3)
+🔍 Fetching conversations for user uFdp6q7Co4VXBboBZGOS9Pi2OuG3 (last 30 days)
+✅ Found 787 conversations for user uFdp6q7Co4VXBboBZGOS9Pi2OuG3
+📝 Processing 1 conversation(s)
+============================================================
+🤖 Running AI workflow...
+
+============================================================
+📊 FINAL RESULTS
+============================================================
+👤 User ID: uFdp6q7Co4VXBboBZGOS9Pi2OuG3
+📝 Processed 1 conversations
+🔍 Generated 8 total segments
+
+📈 TOP CONVERSATION SEGMENTS:
+------------------------------------------------------------
+
+1. SEGMENT 5 (Score: 15/20)
+   📋 Topic: Dispatcher ↔ Broker role-play & professional phrases
+   🎯 Engagement: 8/10 - User actively asks, repeats, corrects questions, switches roles, seeks clarification; high back-and-forth density.
+   😊 Enjoyment: 7/10 - User expresses interest, continues voluntarily, shows satisfaction when phrases are mastered.
+   💬 Content: user: Я начинающий диспетчер. Пока еще я не знаю, какие ситуации бывают, я хочу, чтобы ты меня научила.
+agent: …Хочешь, я помогу тебе составить основн...
+   🎭 Tone: Focused practice, energetic, cooperative
+   🧭 Direction: User practises real-world dispatcher questions (weight, rate, pick-up) while agent answers as broker; switches roles and refines wording.
+
+2. SEGMENT 3 (Score: 14/20)
+   📋 Topic: Truck-stop vocabulary: “truck stop” vs “track stop” loop
+   🎯 Engagement: 8/10 - User persists through many attempts, responds quickly, adjusts wording repeatedly.
+   😊 Enjoyment: 6/10 - Despite frustration, user keeps practicing; playful tone implies moderate enjoyment.
+   💬 Content: agent: If you need a truck stop, say: “Where is the nearest truck stop?”
+user: Where is the nearest stop?
+agent: …Better say truck stop, not track sto...
+   🎭 Tone: Playful drilling, patient correction, slight frustration
+   🧭 Direction: Agent tries to teach correct phrase; user repeats many variations until success.
+
+3. SEGMENT 6 (Score: 13/20)
+   📋 Topic: Gas-station dialogue (“Fill it up, please” test)
+   🎯 Engagement: 7/10 - User follows prompts accurately, answers all questions, repeats when asked.
+   😊 Enjoyment: 6/10 - User responds positively (“Thank you”), agrees to continue; shows moderate enthusiasm.
+   💬 Content: agent: Situation: you need diesel.
+user: Hello. I need diesel, please.
+agent: What’s your pump number?
+user: Pump three.
+agent: How much do you need?
+...
+   🎭 Tone: Structured drill, quiz-like, encouraging
+   🧭 Direction: Agent runs test; user answers pump number, receipt, fuel quantity; agent corrects.
+
+🎯 GENERATED CONVERSATION STARTERS:
+------------------------------------------------------------
+
+1. Today's average spot rate is $2.16/mile—want a quick negotiation drill?
+   💡 Context: Dispatcher role-play
+
+2. New FMCSA rule proposed—practice explaining it to a broker in English?
+   💡 Context: Dispatcher-broker updates
+
+3. I found five sneaky accessorial fees—want to rehearse preventing them?
+   💡 Context: Dispatcher cost control
+
+4. Fresh vocabulary quiz: track, truck, and tricky homophones—ready for 60-second drill?
+   💡 Context: Truck-stop vocabulary
+
+5. Compliment: your persistence rocks—try mastering 'layover pay' phrasing next?
+   💡 Context: Motivation + phrasing
+
+6. Diesel prices down 8¢—want to practice small-talk about fuel savings?
+   💡 Context: Fuel price chat
+
+7. Let's simulate a Friday freight crunch—can you book three loads in five minutes?
+   💡 Context: High-pressure dispatch
+
+8. Fun tongue-twister: 'truck stop track'—bet you nail it this time!
+   💡 Context: Pronunciation fun
+
+9. Surprising stat: 42% loads require detention talk—shall we draft perfect script?
+   💡 Context: Detention negotiations
+
+10. Ready for role reversal: I’m the nervous dispatcher; you guide me confidently.
+   💡 Context: Role reversal exercise
+
+11. Gas station small-talk challenge: upsell snacks in English—game on?
+   💡 Context: Gas-station upsell
+
+12. Quick memory test: recall yesterday’s pump-three dialogue, now add loyalty points.
+   💡 Context: Memory reinforcement
+
+13. Broker buzzword of the week: 'drop trailer'—let's craft three use-cases.
+   💡 Context: Broker buzzwords
+
+14. Ever tried bilingual dispatching? Let's mix Russian and English phrases today.
+   💡 Context: Bilingual practice
+
+15. Mystery scenario: broken pump display—improvise help-desk call in English?
+   💡 Context: Problem-solving drill
+
+16. Compliment: your pronunciation improved—ready for micro-challenge on 'fuel surcharge'?
+   💡 Context: Pronunciation progress
+
+17. Breaking logistics news: Port delays easing—practice updating a driver accurately.
+   💡 Context: Logistics news update
+
+18. Let's speed-run 10 dispatcher questions, no pauses—up for it?
+   💡 Context: Speed challenge
+
+19. Fun fact: first U.S. truck stop opened 1940—quiz on its services?
+   💡 Context: Historical trivia
+
+20. Fresh twist: negotiate fuel discount while ordering coffee—wanna role-play?
+   💡 Context: Multitask role-play
+
+21. Statistic: 60% brokers prefer email—shall we craft perfect rate-confirmation template?
+   💡 Context: Email etiquette
+
+22. Challenge: say 'truck stop' perfectly five times, increasing speed each attempt.
+   💡 Context: Pronunciation drill
+
+23. Spot-the-error: 'Fill up pump three diesel please'—what’s missing?
+   💡 Context: Error spotting
+
+24. Insight: drivers love freebies—practice negotiating shower vouchers at truck stops.
+   💡 Context: Negotiation practice
+
+25. Unexpected twist: broker insists on track stop—handle confusion gracefully.
+   💡 Context: Confusion handling
+
+26. Pump-number swap game: you guess my number correctly, else repeat dialogue.
+   💡 Context: Game-style practice
+
+27. Dispatcher karaoke: sing your load details to practice clarity—interested?
+   💡 Context: Fun learning
+
+28. Reminder: review yesterday’s successful phrases before new drills—need recap?
+   💡 Context: Reminder + review
+
+29. Hypothetical: fuel card declines—talk to cashier without panic.
+   💡 Context: Stress scenario
+
+30. Quick brain break: pronounce 'accessorial' backwards—then return to learning.
+   💡 Context: Brain break
+
+============================================================
+✅ ANALYSIS COMPLETE!
+============================================================
+
+✅ Processing completed for almas!
+============================================================

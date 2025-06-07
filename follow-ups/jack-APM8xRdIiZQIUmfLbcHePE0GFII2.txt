@@ -1,0 +1,10 @@
+🚀 Starting Intelligent Conversation Follow-Up System
+============================================================
+👤 Processing user: jack
+🆔 User ID: APM8xRdIiZQIUmfLbcHePE0GFII2
+⏰ Timestamp: 2025-06-06 15:29:36
+============================================================
+🔍 Fetching conversations for user: jack (APM8xRdIiZQIUmfLbcHePE0GFII2)
+🔍 Fetching conversations for user APM8xRdIiZQIUmfLbcHePE0GFII2 (last 30 days)
+❌ No conversations found for user APM8xRdIiZQIUmfLbcHePE0GFII2 in the last 30 days.
+❌ No sufficient conversation data found for jack. Skipping.

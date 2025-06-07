@@ -1,0 +1,130 @@
+🚀 Starting Intelligent Conversation Follow-Up System
+============================================================
+👤 Processing user: nurik
+🆔 User ID: dbWfZBQUOSdrZwXZnLk9ATnyrDp2
+⏰ Timestamp: 2025-06-06 15:26:44
+============================================================
+🔍 Fetching conversations for user: nurik (dbWfZBQUOSdrZwXZnLk9ATnyrDp2)
+🔍 Fetching conversations for user dbWfZBQUOSdrZwXZnLk9ATnyrDp2 (last 30 days)
+✅ Found 7 conversations for user dbWfZBQUOSdrZwXZnLk9ATnyrDp2
+📝 Processing 1 conversation(s)
+============================================================
+🤖 Running AI workflow...
+
+============================================================
+📊 FINAL RESULTS
+============================================================
+👤 User ID: dbWfZBQUOSdrZwXZnLk9ATnyrDp2
+📝 Processed 1 conversations
+🔍 Generated 1 total segments
+
+📈 TOP CONVERSATION SEGMENTS:
+------------------------------------------------------------
+
+1. SEGMENT 1 (Score: 2/20)
+   📋 Topic: Attempt to restart a respectful dialogue about the Statue of Liberty
+   🎯 Engagement: 1/10 - No user messages are present in the extract, so actual participation from the user cannot be measured. The agent is the only one speaking, showing the user is either silent or their lines were omitted. Consequently, engagement is minimal.
+   😊 Enjoyment: 1/10 - Without user responses there is no evidence of positive sentiment, humor appreciation, or satisfaction. The agent tries humor once, but we cannot observe the user reaction, so enjoyment is assumed to be extremely low.
+   💬 Content: agent:  Слушай, я понимаю что ты устал или расстроен, но давай общаться уважительно. Я здесь чтобы помочь, но грубость нам не поможет. Может начнем за...
+   🎭 Tone: Calm, conciliatory, slightly humorous
+   🧭 Direction: Agent repeatedly tries to diffuse user’s rudeness, switch to helpful mode, and re-engage on the initial topic
+
+🎯 GENERATED CONVERSATION STARTERS:
+------------------------------------------------------------
+
+1. Did you know Lady Liberty originally arrived packed in 214 crates?
+   💡 Context: 🤔 Intriguing
+
+2. Free virtual tour shows Statue’s hidden staircase—want the link?
+   💡 Context: 🎯 Useful
+
+3. Liberty’s copper skin was brown until 1920s—surprised by the color shift?
+   💡 Context: 💡 Insightful
+
+4. Scientists just 3-D scanned Liberty’s torch—guess what flaws they found?
+   💡 Context: 🤔 Intriguing
+
+5. Planning NYC trip? Crown tickets now release 6 AM Fridays—want reminders?
+   💡 Context: 🎯 Useful
+
+6. Liberty’s pedestal was crowdfunded by 120,000 donors—first Kickstarter style campaign!
+   💡 Context: 💡 Insightful
+
+7. New drone footage reveals Liberty’s lightning scars—see the mesmerising patterns?
+   💡 Context: 🤔 Intriguing
+
+8. If Liberty could tweet, first post after 100+ lightning hits?
+   💡 Context: 😄 Funny
+
+9. Need concise Statue facts for debates? I can compile a quick sheet.
+   💡 Context: 🎯 Useful
+
+10. French engineers hid metric-imperial conversion notes inside the statue—cool engineering hack?
+   💡 Context: 💡 Insightful
+
+11. Upcoming exhibit compares Liberty to global sister statues—want early highlights?
+   💡 Context: 🤔 Intriguing
+
+12. Climate report predicts sea-level threat to Liberty’s island—curious about mitigation plans?
+   💡 Context: 🎯 Useful
+
+13. Which superhero could actually lift the statue? Physics says maybe Hulk!
+   💡 Context: 😄 Funny
+
+14. Liberty’s face modeled after sculptor’s mother, not goddess—change your perspective?
+   💡 Context: 💡 Insightful
+
+15. Only one other U.S. lighthouse used Liberty’s Fresnel lens—guess where?
+   💡 Context: 🤔 Intriguing
+
+16. Want a timeline visualizing Liberty’s restorations? I can whip one up.
+   💡 Context: 🎯 Useful
+
+17. Imagine Liberty wearing modern sunglasses—should we mock up a meme?
+   💡 Context: 😄 Funny
+
+18. The statue sways 3 inches in strong wind—engineering marvel worth discussing?
+   💡 Context: 💡 Insightful
+
+19. Hidden balcony under Liberty’s torch closed since 1916—should it reopen?
+   💡 Context: 🤔 Intriguing
+
+20. Writing about symbols? Liberty’s seven rays meanings could enrich your essay.
+   💡 Context: 🎯 Useful
+
+21. Liberty holding coffee instead of torch—too much Monday energy?
+   💡 Context: 😄 Funny
+
+22. Statue’s exterior copper equals only two pennies thick—astonishing, right?
+   💡 Context: 💡 Insightful
+
+23. Ever noticed Liberty’s broken shackles at her feet? Symbolism often overlooked.
+   💡 Context: 🤔 Intriguing
+
+24. Need respectful debate tips on monuments? I gathered expert guidelines.
+   💡 Context: 🎯 Useful
+
+25. Liberty selfies: better angle—torch side or face front?
+   💡 Context: 😄 Funny
+
+26. Liberty’s green patina actually protects her—counterintuitive chemistry lesson?
+   💡 Context: 💡 Insightful
+
+27. Statue’s dedication speakers almost excluded women—story worth unpacking?
+   💡 Context: 🤔 Intriguing
+
+28. Podcast dropped on Liberty’s acoustics inside the crown—want link?
+   💡 Context: 🎯 Useful
+
+29. If pigeons paid rent, Liberty’s pedestal would be billionaire.
+   💡 Context: 😄 Funny
+
+30. Liberty faces southeast for arriving ships—not Manhattan—nice navigational detail.
+   💡 Context: 💡 Insightful
+
+============================================================
+✅ ANALYSIS COMPLETE!
+============================================================
+
+✅ Processing completed for nurik!
+============================================================

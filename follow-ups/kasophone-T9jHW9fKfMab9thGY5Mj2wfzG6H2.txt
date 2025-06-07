@@ -1,0 +1,155 @@
+🚀 Starting Intelligent Conversation Follow-Up System
+============================================================
+👤 Processing user: kasophone
+🆔 User ID: T9jHW9fKfMab9thGY5Mj2wfzG6H2
+⏰ Timestamp: 2025-06-06 15:25:17
+============================================================
+🔍 Fetching conversations for user: kasophone (T9jHW9fKfMab9thGY5Mj2wfzG6H2)
+🔍 Fetching conversations for user T9jHW9fKfMab9thGY5Mj2wfzG6H2 (last 30 days)
+✅ Found 459 conversations for user T9jHW9fKfMab9thGY5Mj2wfzG6H2
+📝 Processing 1 conversation(s)
+============================================================
+🤖 Running AI workflow...
+
+============================================================
+📊 FINAL RESULTS
+============================================================
+👤 User ID: T9jHW9fKfMab9thGY5Mj2wfzG6H2
+📝 Processed 1 conversations
+🔍 Generated 9 total segments
+
+📈 TOP CONVERSATION SEGMENTS:
+------------------------------------------------------------
+
+1. SEGMENT 3 (Score: 17/20)
+   📋 Topic: Science trivia quiz with ‘Зина’
+   🎯 Engagement: 9/10 - User actively requests the game, selects category, answers every question promptly, asks to continue.
+   😊 Enjoyment: 8/10 - Positive responses, eagerness to proceed, no signs of frustration; clear enjoyment of quiz.
+   💬 Content: user: Хочу поиграть в викторину.
+agent: Привет! Меня зовут Зина — ...
+user: Категория Наука хочу начать.
+agent: Отлично! Вот твой первый научный вопро...
+   🎭 Tone: Focused, enthusiastic, educational
+   🧭 Direction: User explicitly asks to play quiz, chooses science category, answers successive questions correctly, agent keeps score.
+
+2. SEGMENT 2 (Score: 12/20)
+   📋 Topic: Name confusion – "Касофон" & super-powers
+   🎯 Engagement: 7/10 - User responds to jokes, corrects agent, asks clarifying questions, and introduces new sub-topics (super-powers, identity).
+   😊 Enjoyment: 5/10 - Some playful banter, but user also signals discomfort ("звучит пошло"), enjoyment moderate.
+   💬 Content: agent: Что нового, касофон?
+agent: Что нового, касофон?
+user: Ты же понимаешь, что это звучит пошло.
+agent: Ах вот оно что! Кософон — звучит солидно.....
+   🎭 Tone: Playful, mildly awkward, comedic misunderstandings
+   🧭 Direction: Agent repeatedly calls the user «касофон», jokes become risqué, user corrects and discusses super-powers and agent identity.
+
+3. SEGMENT 1 (Score: 9/20)
+   📋 Topic: Relentless news requests & sarcastic headlines
+   🎯 Engagement: 6/10 - User keeps returning with the same request, signaling persistence; however responses are short, showing increasing frustration.
+   😊 Enjoyment: 3/10 - User expresses displeasure ("Ой хватит", "Не придумывай"), indicating low enjoyment despite maintaining interaction.
+   💬 Content: agent: Вы слышали новости о сильном наводнении в Нигерии? ...
+user: Что еще нового?
+agent: Наверно, единственная новинка сегодняшнего дня... 
+user: Чт...
+   🎭 Tone: Chaotic, humorous, increasingly frustrated
+   🧭 Direction: User repeatedly asks for fresh news, agent responds with jokes or unrelated items; no resolution.
+
+🎯 GENERATED CONVERSATION STARTERS:
+------------------------------------------------------------
+
+1. James Webb spotted sand clouds on exoplanet—ready for a cosmic trivia round?
+   💡 Context: 🤔 Intriguing – Science Quiz
+
+2. Fresh Nobel buzz: room-temperature superconductors—want to predict winners through a quiz?
+   💡 Context: 🎯 Useful – Science Quiz
+
+3. Only 8% know tardigrades survived space vacuum—care to boost that stat?
+   💡 Context: 💡 Insightful – Science Quiz
+
+4. Scientists taught spinach to send emails; fancy a plant-tech trivia session?
+   💡 Context: 🤔 Intriguing – Science Quiz
+
+5. AI just designed a new antibiotic in hours—want today’s rapid-fire news quiz?
+   💡 Context: 🎯 Useful – News Lightning
+
+6. Касофон Assemble! Which quirky super-power shall we scientifically justify today?
+   💡 Context: 😄 Funny – Name Confusion
+
+7. Magnetism or invisibility: which power matches your personality quiz results?
+   💡 Context: 💡 Insightful – Superpowers
+
+8. New element oganesson might behave like metal and gas—care to explore periodic surprises?
+   💡 Context: 🤔 Intriguing – Science Quiz
+
+9. Quick brain-boost: three-minute lightning quiz raises alertness 20%. Want to try?
+   💡 Context: 🎯 Useful – Science Quiz
+
+10. Promise I’ll pronounce your name right—prove it through a pun-filled quiz?
+   💡 Context: 😄 Funny – Name Play
+
+11. Mystery radio burst repeated every 22 minutes—shall we decode the cosmos together?
+   💡 Context: 🤔 Intriguing – News
+
+12. Octopuses dream in color; ready for a marine-mind trivia dive?
+   💡 Context: 💡 Insightful – Science Quiz
+
+13. If sarcasm were a superpower, your score’s legendary—want the official quiz?
+   💡 Context: 😄 Funny – Superpowers
+
+14. Need a five-minute focus break? Let’s tackle toughest physics question yet.
+   💡 Context: 🎯 Useful – Science Quiz
+
+15. Green comet returns after 50,000 years—shall we celebrate with space trivia?
+   💡 Context: 🤔 Intriguing – News
+
+16. Bioluminescent mushrooms lit up ancient forests—curious for glowing-nature quiz?
+   💡 Context: 💡 Insightful – Science Quiz
+
+17. I’ve retired “касофон”; new nickname voucher inside today’s quiz!
+   💡 Context: 😄 Funny – Name Confusion
+
+18. World’s first wooden satellite launches soon—want the eco-tech headline challenge?
+   💡 Context: 🎯 Useful – News
+
+19. Quantum cats got bigger in lab last week—care to unpack Schrödinger again?
+   💡 Context: 🤔 Intriguing – Science
+
+20. Super-hearing vs. echolocation: which aligns with your daily habits?
+   💡 Context: 💡 Insightful – Superpowers
+
+21. Bet you can’t name five foods discovered by accident—challenge accepted?
+   💡 Context: 😄 Funny – Quiz
+
+22. Three correct answers unlock personalized study hacks—ready to play?
+   💡 Context: 🎯 Useful – Science Quiz
+
+23. Solar storm predicted Friday; want to learn aurora science before lights glow?
+   💡 Context: 🤔 Intriguing – News
+
+24. Deep-sea sharks glow blue; let’s test ocean-fact mastery.
+   💡 Context: 💡 Insightful – Science
+
+25. No more awkward nicknames—help me calibrate with a name-facts speed round?
+   💡 Context: 😄 Funny – Name Play
+
+26. Need concise world updates? I built a 90-second headline quiz.
+   💡 Context: 🎯 Useful – News
+
+27. Mars once had megatsunamis; up for red-planet trivia now?
+   💡 Context: 🤔 Intriguing – Science Quiz
+
+28. Scientists studying real cloaking tech—shall we grade its superhero potential?
+   💡 Context: 💡 Insightful – Superpowers
+
+29. Today’s headlines, zero sarcasm—tempted to test me?
+   💡 Context: 😄 Funny – News
+
+30. Craving mental cardio? Five fresh questions await.
+   💡 Context: 🎯 Useful – Quiz
+
+============================================================
+✅ ANALYSIS COMPLETE!
+============================================================
+
+✅ Processing completed for kasophone!
+============================================================
