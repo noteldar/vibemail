@@ -121,13 +121,34 @@ def get_conversation_followup_workflow(model_name="o3"):
         
         print("\n🎯 GENERATED CONVERSATION STARTERS:")
         print("-" * 60)
-        # Show top 15 starters (instead of all 30 to keep output manageable)
-        for starter in state["conversation_starters"][:15]:
+        # Show top 10 starters with comprehensive details
+        for starter in state["conversation_starters"][:10]:
             print(f"\n{starter.rank}. {starter.starter}")
-            print(f"   💡 Context: {starter.context}")
+            print(f"   🏷️  Category: {starter.value_category}")
+            print(f"   📊 Engagement Score: {starter.predicted_engagement_score}/10")
+            print(f"   🎯 Personalization: {starter.personalization_level}")
+            print(f"   💭 Context: {starter.conversation_context}")
+            print(f"   🔍 Topic: {starter.segment_topic}")
+            print(f"   📈 Interest Level: {starter.user_interest_level}")
             
-        if len(state["conversation_starters"]) > 15:
-            print(f"\n... and {len(state['conversation_starters']) - 15} more conversation starters (ranks 16-30)")
+            if starter.research_enhanced:
+                print(f"   🔬 Research: Enhanced with internet research")
+                print(f"   📚 Sources: {len(starter.sources)} sources")
+                if starter.sources:
+                    print(f"   🔗 URLs: {', '.join(starter.sources[:2])}{'...' if len(starter.sources) > 2 else ''}")
+            else:
+                print(f"   🔬 Research: Based on conversation history")
+            
+            print(f"   🧠 Psychology: {starter.comeback_psychology}")
+            print(f"   ⚡ Strategy: {starter.engagement_strategy}")
+            
+        if len(state["conversation_starters"]) > 10:
+            print(f"\n... and {len(state['conversation_starters']) - 10} more conversation starters available")
+            print("\n📈 SUMMARY OF REMAINING STARTERS:")
+            for starter in state["conversation_starters"][10:15]:
+                print(f"   {starter.rank}. {starter.starter} ({starter.value_category}, {starter.predicted_engagement_score}/10)")
+            if len(state["conversation_starters"]) > 15:
+                print(f"   ... and {len(state['conversation_starters']) - 15} more")
 
         print("\n" + "="*60)
         print("✅ ANALYSIS COMPLETE!")
