@@ -1,17 +1,18 @@
-import sys
-import os
 import logging
+import os
+import sys
 from typing import List
 
 # Add the project root directory to Python path
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../")))
 
 from dataclasses import dataclass
-from pydantic_ai import RunContext, Agent
+
+from dotenv import load_dotenv
 from pydantic import BaseModel
+from pydantic_ai import Agent, RunContext
 
 from openai_model import get_openai_model
-from dotenv import load_dotenv
 
 load_dotenv()
 
@@ -33,9 +34,9 @@ class ConversationSegment(BaseModel):
     content: str
     engagement_score: int  # 1-10 scale
     engagement_justification: str
-    enjoyment_score: int   # 1-10 scale
+    enjoyment_score: int  # 1-10 scale
     enjoyment_justification: str
-    combined_score: int    # Sum of engagement + enjoyment
+    combined_score: int  # Sum of engagement + enjoyment
 
 
 class SegmenterRaterResult(BaseModel):
@@ -47,14 +48,14 @@ class SegmenterRaterDeps:
     conversation: str  # Single conversation text
 
 
-def make_agent_chat_segmenter_rater(model_name="o3"):
+def make_agent_chat_segmenter_rater(model_name="o3-mini"):
     agent = Agent(
         get_openai_model(model_name),
         deps_type=SegmenterRaterDeps,
         retries=3,
-        result_type=SegmenterRaterResult,
+        output_type=SegmenterRaterResult,
     )
-    
+
     @agent.system_prompt
     def system_prompt(ctx: RunContext[SegmenterRaterDeps]) -> str:
         return f"""
@@ -104,5 +105,5 @@ def make_agent_chat_segmenter_rater(model_name="o3"):
         
         Focus on capturing the richness and variety of the user's conversation experience.
         """
-    
-    return agent 
+
+    return agent

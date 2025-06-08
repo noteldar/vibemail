@@ -1,3 +1,4 @@
+import base64
 import importlib.util
 import json
 import logging
@@ -5,12 +6,23 @@ import os
 import sys
 from typing import Annotated, List, TypedDict
 
+import dotenv
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
+from openai import OpenAI
 
 import chat_retrieval
-from agents import chat_segmenter_rater, conversation_starter_generator
-from agents.email_agent import ConversationFollowup, EmailAgentDeps, make_email_agent
+from agents import chat_segmenter_rater, conversation_starter_generator, email_agent
+from agents.email_agent import (
+    ConversationFollowup,
+    EmailAgentDeps,
+    EmailGenerationAgentDeps,
+    make_email_content_agent,
+    make_email_generation_agent,
+)
+from openai_model import get_openai_image_model, get_openai_model
+
+dotenv.load_dotenv()
 
 # Extract the imports we need
 make_agent_chat_segmenter_rater = chat_segmenter_rater.make_agent_chat_segmenter_rater
@@ -22,6 +34,10 @@ make_agent_conversation_starter_generator = (
 )
 StarterGeneratorDeps = conversation_starter_generator.StarterGeneratorDeps
 ConversationStarter = conversation_starter_generator.ConversationStarter
+
+make_email_content_agent = email_agent.make_email_content_agent
+EmailAgentDeps = email_agent.EmailAgentDeps
+ConversationFollowup = email_agent.ConversationFollowup
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
@@ -161,18 +177,70 @@ def get_conversation_followup_workflow(model_name="o3"):
 
         return state
 
+    async def node_generate_email(state: ConversationFollowUpState):
+        """Node 3: Generate email from conversation starters"""
+        logger.info("Generating email from conversation starters")
+        deps = EmailAgentDeps(
+            conversation_followup=ConversationFollowup(
+                followup=state["conversation_starters"][0].starter,
+                mood=state["conversation_starters"][0].mood,
+                context=state["conversation_starters"][0].conversation_context,
+                category=state["conversation_starters"][0].value_category,
+                engagement_score=state["conversation_starters"][
+                    0
+                ].predicted_engagement_score,
+                personalization=state["conversation_starters"][0].personalization_level,
+                topic=state["conversation_starters"][0].segment_topic,
+                interest_level=state["conversation_starters"][0].user_interest_level,
+                research=state["conversation_starters"][0].research_summary,
+                psychology=state["conversation_starters"][0].comeback_psychology,
+                strategy=state["conversation_starters"][0].engagement_strategy,
+            )
+        )
+        result = await make_email_content_agent().run(deps=deps)
+
+        return state
+
+    async def node_generate_email_generation(state: ConversationFollowUpState):
+        """Node 4: Generate email generation from email content"""
+        logger.info("Generating email generation from email content")
+
+        deps = EmailGenerationAgentDeps(
+            email_content=state["email_content"],
+            mood=state["conversation_starters"][0].mood,
+        )
+        result = await make_email_generation_agent().run(deps=deps)
+        img = OpenAI().images.generate(
+            model="gpt-image-1",
+            prompt=state["conversation_starters"][0].starter,
+            n=1,
+            size="1024x1024",
+        )
+        # Encode the image to base64
+        image_base64 = img.data[0].b64_json
+
+        result.output.email_html = result.output.email_html.replace(
+            "[BASE64_DATA]", image_base64
+        )
+
+        return state
+
     # Build the workflow graph
     builder = StateGraph(ConversationFollowUpState)
 
     # Add nodes
     builder.add_node("node_segment_and_rate", node_segment_and_rate)
     builder.add_node("node_generate_starters", node_generate_starters)
+    builder.add_node("node_generate_email", node_generate_email)
+    builder.add_node("node_generate_email_generation", node_generate_email_generation)
     builder.add_node("node_finish", node_finish)
 
     # Add edges (sequential flow)
     builder.add_edge(START, "node_segment_and_rate")
     builder.add_edge("node_segment_and_rate", "node_generate_starters")
-    builder.add_edge("node_generate_starters", "node_finish")
+    builder.add_edge("node_generate_starters", "node_generate_email")
+    builder.add_edge("node_generate_email", "node_generate_email_generation")
+    builder.add_edge("node_generate_email_generation", "node_finish")
     builder.add_edge("node_finish", END)
 
     # Compile with memory
@@ -246,6 +314,7 @@ if __name__ == "__main__":
             conversation_segments=[],
             top_segments=[],
             conversation_starters=[],
+            email_content=[],
         )
 
         print("🤖 Running AI workflow...")
@@ -264,12 +333,32 @@ if __name__ == "__main__":
         print("=" * 60)
 
         # Run test with real data
-        email_agent = make_email_agent()
+        email_agent = make_email_content_agent()
         conversation_followup = json.load(open("concrete_example.json"))
-        deps = EmailAgentDeps(
+        email_content_deps = EmailAgentDeps(
             conversation_followup=ConversationFollowup(**conversation_followup)
         )
-        result = await email_agent.run(deps=deps)
-        print(result.output)
+        email_content_result = await email_agent.run(deps=email_content_deps)
 
-    asyncio.run(test_email_agent())
+        email_generation_agent = make_email_generation_agent()
+
+        # Encode the image to base64
+        image_base64 = base64.b64encode(open("placeholder.png", "rb").read()).decode(
+            "utf-8"
+        )
+
+        deps = EmailGenerationAgentDeps(
+            email_content=email_content_result.output,
+            mood=conversation_followup["mood"],
+            image=image_base64,
+        )
+        result = await email_generation_agent.run(deps=deps)
+
+        # Replace the placeholder with the actual base64 data
+        final_html = result.output.email_html.replace(
+            "{IMAGE_BASE64_PLACEHOLDER}", image_base64
+        )
+
+        open("email.html", "w").write(final_html)
+
+    asyncio.run(test_workflow())

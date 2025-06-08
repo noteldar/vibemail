@@ -32,6 +32,10 @@ class EmailAgentResult(BaseModel):
     farewell: str
 
 
+class EmailGenerationAgentResult(BaseModel):
+    email_html: str
+
+
 class ConversationFollowup(BaseModel):
     followup: str
     category: str
@@ -51,7 +55,13 @@ class EmailAgentDeps:
     conversation_followup: ConversationFollowup
 
 
-def make_email_agent(model_name="o3"):
+@dataclass
+class EmailGenerationAgentDeps:
+    email_content: EmailAgentResult
+    mood: str
+
+
+def make_email_content_agent(model_name="o3-mini"):
     agent = Agent(
         get_openai_model(model_name),
         deps_type=EmailAgentDeps,
@@ -86,6 +96,39 @@ def make_email_agent(model_name="o3"):
         - Strategy: {ctx.deps.conversation_followup.strategy}
 
         Most important part of the followup is the `Conversation Followup`. Word the entire email around that.
+        """
+
+    return agent
+
+
+def make_email_generation_agent(model_name="o3-mini"):
+    agent = Agent(
+        get_openai_model(model_name),
+        deps_type=EmailGenerationAgentDeps,
+        retries=3,
+        output_type=EmailGenerationAgentResult,
+    )
+
+    @agent.system_prompt
+    def system_prompt(ctx: RunContext[EmailGenerationAgentDeps]) -> str:
+        return f"""
+        You are a greatest web-designer who's trying to apply his skills and expertise in creating greatest looking visually appealing email.
+        You are smart so you know that not everything that work in htmls works in emails, like javascript. So your email html is self-contained and doesn't rely on external resources
+        and doesn't have scripts. Just pure html+inline css and good old creativity and your amazing design skills.
+
+        In addition to email textual content, like greeting, email body and farewell messages, there's the overall mood available to you. Use the mood to adjust your final email template
+        like using appropriate colors, fonts, etc.
+
+        To add images, use the following html tag:
+        <img src="data:image/png;base64,[BASE64_DATA]" alt="Image Description">
+
+        Here's the textual content:
+        - Greeting: {ctx.deps.email_content.greeting}
+        - Email Body: {ctx.deps.email_content.email}
+        - Farewell: {ctx.deps.email_content.farewell}
+        - Mood: {ctx.deps.mood}
+
+        IMPORTANT: You must use
         """
 
     return agent

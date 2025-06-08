@@ -62,7 +62,7 @@ class StarterGeneratorResult(BaseModel):
     data: List[ConversationStarter]
 
 
-def make_agent_conversation_starter_generator(model_name="o3"):
+def make_agent_conversation_starter_generator(model_name="o3-mini"):
     """Creates a conversation starter generator agent using o3 model with deep research capabilities"""
 
     # Get the OpenAI model
@@ -133,14 +133,14 @@ Consider these psychological triggers that make users return:
 - Value addition (provides clear benefit or insight)
 - Surprise factor (unexpected but relevant information)
 
-OUTPUT: Generate 30 ranked conversation starters (1-30, best to worst). Each must include all required fields with detailed justification and context. Return as JSON with the ConversationStarterList structure.
+OUTPUT: Generate top ranked conversation starter. It must include all required fields with detailed justification and context. Return as JSON with the ConversationStarter structure.
 """
 
     agent = Agent(
         model=model,
         deps_type=StarterGeneratorDeps,
         system_prompt=system_prompt,
-        result_type=ConversationStarterList,
+        output_type=ConversationStarter,
     )
 
     @agent.tool
