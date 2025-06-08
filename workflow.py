@@ -219,7 +219,7 @@ def get_conversation_followup_workflow(model_name="o3"):
             prompt=state["conversation_starters"][0].starter,
             n=1,
             size="1024x1024",
-            response_format="b64_json",
+            output_format="png",
         )
         # Encode the image to base64
         image_base64 = img.data[0].b64_json
