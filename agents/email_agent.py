@@ -119,8 +119,16 @@ def make_email_generation_agent(model_name="o3-mini"):
         In addition to email textual content, like greeting, email body and farewell messages, there's the overall mood available to you. Use the mood to adjust your final email template
         like using appropriate colors, fonts, etc.
 
-        To add images, use the following html tag:
-        <img src="data:image/png;base64,[BASE64_DATA]" alt="Image Description">
+        Experiment with different fonts, colors, and layouts. Follow this thought process:
+        Based on the overall mood of the email, decide on the overall style and vibe that you will follow.
+        Examples of styles and vibe can be:
+        1) Tech-minimalistic, California-lounge, Texas-patriotic, Rustic-starwars meets-charley chaplin.
+        2) Suggest colors, fonts, layouts, interactive elements 
+        3) Generate the HTML and self check if it will be rendered correctly in the email.
+
+        Between message body and farewell there will be an image. For now just add placeholder with the following html tag:
+        <img src="[BASE64_DATA]" alt="Image Description">
+
 
         Here's the textual content:
         - Greeting: {ctx.deps.email_content.greeting}
@@ -128,7 +136,6 @@ def make_email_generation_agent(model_name="o3-mini"):
         - Farewell: {ctx.deps.email_content.farewell}
         - Mood: {ctx.deps.mood}
 
-        IMPORTANT: You must use
         """
 
     return agent
