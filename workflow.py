@@ -227,8 +227,10 @@ def get_conversation_followup_workflow(model_name="o3"):
         image_base64 = img.data[0].b64_json
         imgb = Image.open(BytesIO(base64.b64decode(image_base64)))
         imgb = imgb.resize((300, 300))
-        # Encode the image to base64
-        new_image_base64 = base64.b64encode(imgb.tobytes()).decode("utf-8")
+        # Encode the resized image as PNG to base64
+        buffer = BytesIO()
+        imgb.save(buffer, format="PNG")
+        new_image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
 
         result.output.email_html = result.output.email_html.replace(
             "[BASE64_DATA]", new_image_base64
