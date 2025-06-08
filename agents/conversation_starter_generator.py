@@ -1,24 +1,18 @@
-from typing import List
-from dataclasses import dataclass
-from pydantic import BaseModel
 import importlib.util
+import json
 import os
 import sys
-from pydantic_ai import Agent, RunContext
-import json
+from dataclasses import dataclass
+from typing import List
+
 from firecrawl import FirecrawlApp
+from pydantic import BaseModel
+from pydantic_ai import Agent, RunContext
 
 # Add parent directory to path for imports
 sys.path.append(os.path.dirname(os.path.dirname(__file__)))
+import agents.chat_segmenter_rater as chat_segmenter_rater
 from openai_model import get_openai_model
-
-# Import ConversationSegment from the chat segmenter rater file
-spec = importlib.util.spec_from_file_location(
-    "chat_segmenter_rater", 
-    os.path.join(os.path.dirname(__file__), "chat-segmenter-rater.py")
-)
-chat_segmenter_rater = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(chat_segmenter_rater)
 
 ConversationSegment = chat_segmenter_rater.ConversationSegment
 
@@ -44,17 +38,19 @@ class StarterGeneratorResult(BaseModel):
 
 def make_agent_conversation_starter_generator(model_name="o3"):
     """Creates a conversation starter generator agent using o3 model with deep research capabilities"""
-    
+
     # Get the OpenAI model
     model = get_openai_model(model_name)
-    
+
     # Initialize Firecrawl for research (will use FIRECRAWL_API_KEY from environment)
     try:
         firecrawl = FirecrawlApp()
     except Exception as e:
-        print(f"Warning: Firecrawl not initialized. Research capabilities disabled: {e}")
+        print(
+            f"Warning: Firecrawl not initialized. Research capabilities disabled: {e}"
+        )
         firecrawl = None
-    
+
     # Create the enhanced prompt for conversation starter generation
     system_prompt = """
 Create conversation starters that compel users to reopen the app. Each starter must be:
@@ -97,60 +93,60 @@ OUTPUT: Generate 30 ranked conversation starters (1-30, best to worst). Return a
         model=model,
         deps_type=StarterGeneratorDeps,
         system_prompt=system_prompt,
-        result_type=ConversationStarterList
+        result_type=ConversationStarterList,
     )
-    
+
     @agent.tool
     async def deep_research(ctx: RunContext[StarterGeneratorDeps], query: str) -> str:
         """
         Research current information, statistics, and insights on a given topic.
-        
+
         Args:
             ctx: The run context containing dependencies
             query: The research query or topic to investigate
-            
+
         Returns:
             Research findings including current information, statistics, and insights
         """
         if not firecrawl:
             return f"Research unavailable for '{query}' - Firecrawl not configured"
-        
+
         try:
             # Search for current information on the topic
             search_results = firecrawl.search(
-                query=query,
-                limit=3,  # Get top 3 results
-                search_format="markdown"
+                query=query, limit=3, search_format="markdown"  # Get top 3 results
             )
-            
+
             research_summary = f"Research findings for '{query}':\n\n"
-            
-            if search_results and 'data' in search_results:
-                for i, result in enumerate(search_results['data'][:3], 1):
-                    title = result.get('title', 'No title')
-                    content = result.get('markdown', result.get('content', ''))[:300]  # First 300 chars
-                    url = result.get('url', 'No URL')
-                    
+
+            if search_results and "data" in search_results:
+                for i, result in enumerate(search_results["data"][:3], 1):
+                    title = result.get("title", "No title")
+                    content = result.get("markdown", result.get("content", ""))[
+                        :300
+                    ]  # First 300 chars
+                    url = result.get("url", "No URL")
+
                     research_summary += f"{i}. {title}\n"
                     research_summary += f"   Content: {content}...\n"
                     research_summary += f"   Source: {url}\n\n"
             else:
                 research_summary += "No recent information found for this topic."
-                
+
             return research_summary
-            
+
         except Exception as e:
             return f"Research error for '{query}': {str(e)}"
-    
+
     async def run(deps: StarterGeneratorDeps) -> StarterGeneratorResult:
         """
         Generate conversation starters from top segments using o3 model with deep research
         """
-        
+
         # Prepare the input context for the agent
         segments_context = ""
         research_topics = []
-        
+
         for i, segment in enumerate(deps.top_segments):
             segments_context += f"""
 Segment {i+1} (Combined Score: {segment.combined_score}/20):
@@ -164,7 +160,7 @@ Segment {i+1} (Combined Score: {segment.combined_score}/20):
 """
             # Extract key topics for research
             research_topics.append(segment.topic)
-        
+
         # Create research-enhanced prompt
         prompt = f"""
 Based on these top conversation segments from a user's chat history, generate 30 compelling conversation starters ranked from best (1) to worst (30):
@@ -179,17 +175,17 @@ RESEARCH STRATEGY:
 
 Generate conversation starters that would make this user want to reopen the app and continue engaging. Incorporate research findings to add new value and intrigue. Focus on the topics, emotions, and interests shown in these high-scoring segments.
 """
-        
+
         result = await agent.run(prompt, deps=deps)
-        
+
         # Extract the starters from the structured result
         starters = result.data.starters
-        
+
         return StarterGeneratorResult(data=starters)
-    
+
     # Return object with run method
     class ConversationStarterAgent:
         def __init__(self):
             self.run = run
-    
-    return ConversationStarterAgent() 
+
+    return ConversationStarterAgent()
