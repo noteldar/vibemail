@@ -5,6 +5,7 @@ import logging
 import os
 import smtplib
 import sys
+from email.mime.image import MIMEImage
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
 from io import BytesIO
@@ -227,13 +228,14 @@ def get_conversation_followup_workflow(model_name="o3"):
         image_base64 = img.data[0].b64_json
         imgb = Image.open(BytesIO(base64.b64decode(image_base64)))
         imgb = imgb.resize((300, 300))
-        # Encode the resized image as PNG to base64
-        buffer = BytesIO()
-        imgb.save(buffer, format="PNG")
-        new_image_base64 = base64.b64encode(buffer.getvalue()).decode("utf-8")
+        # Save resized image as PNG bytes for MIME attachment
+        image_buffer = BytesIO()
+        imgb.save(image_buffer, format="PNG")
+        resized_image_bytes = image_buffer.getvalue()
 
+        # Replace the entire data URI with CID reference
         result.output.email_html = result.output.email_html.replace(
-            "[BASE64_DATA]", new_image_base64
+            "data:image/png;base64,[BASE64_DATA]", "cid:generated_image"
         )
 
         # Send email via Gmail SMTP
@@ -250,17 +252,29 @@ def get_conversation_followup_workflow(model_name="o3"):
                 )
                 raise ValueError("Email credentials not found in environment variables")
 
-            # Create message
-            msg = MIMEMultipart("alternative")
+            # Create message with proper structure for embedded images
+            msg = MIMEMultipart("mixed")
             msg["Subject"] = (
                 f"Conversation Follow-up: {state['conversation_starters'][0].segment_topic}"
             )
             msg["From"] = gmail_user
             msg["To"] = to_email
 
+            # Create a related multipart for HTML + embedded images
+            msg_related = MIMEMultipart("related")
+
             # Create HTML part
             html_part = MIMEText(result.output.email_html, "html")
-            msg.attach(html_part)
+            msg_related.attach(html_part)
+
+            # Attach the resized image with Content-ID
+            img_attachment = MIMEImage(resized_image_bytes)
+            img_attachment.add_header("Content-ID", "<generated_image>")
+            img_attachment.add_header("Content-Disposition", "inline")
+            msg_related.attach(img_attachment)
+
+            # Attach the related part to the main message
+            msg.attach(msg_related)
 
             # Connect to Gmail SMTP server
             server = smtplib.SMTP("smtp.gmail.com", 587)
@@ -412,9 +426,9 @@ if __name__ == "__main__":
         )
         result = await email_generation_agent.run(deps=deps)
 
-        # Replace the placeholder with the actual base64 data
+        # Replace the placeholder with CID reference
         final_html = result.output.email_html.replace(
-            "{IMAGE_BASE64_PLACEHOLDER}", image_base64
+            "{IMAGE_BASE64_PLACEHOLDER}", "cid:placeholder_image"
         )
 
         open("email.html", "w").write(final_html)
