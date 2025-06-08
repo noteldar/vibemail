@@ -127,7 +127,7 @@ def make_email_generation_agent(model_name="o3-mini"):
         3) Generate the HTML and self check if it will be rendered correctly in the email.
 
         Between message body and farewell there will be an image. For now just add placeholder with the following html tag:
-        <img src="[BASE64_DATA]" alt="Image Description">
+        <img src="data:image/png;base64,[BASE64_DATA]" alt="Image Description">
 
 
         Here's the textual content:
