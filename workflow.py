@@ -119,15 +119,41 @@ def get_conversation_followup_workflow(model_name="o3"):
 
         print("\n🎯 GENERATED CONVERSATION STARTERS:")
         print("-" * 60)
-        # Show top 15 starters (instead of all 30 to keep output manageable)
-        for starter in state["conversation_starters"][:15]:
+        # Show top 10 starters with comprehensive details
+        for starter in state["conversation_starters"][:10]:
             print(f"\n{starter.rank}. {starter.starter}")
-            print(f"   💡 Context: {starter.context}")
+            print(f"   🏷️  Category: {starter.value_category}")
+            print(f"   🎭 Mood: {starter.mood}")
+            print(f"   📊 Engagement Score: {starter.predicted_engagement_score}/10")
+            print(f"   🎯 Personalization: {starter.personalization_level}")
+            print(f"   💭 Context: {starter.conversation_context}")
+            print(f"   🔍 Topic: {starter.segment_topic}")
+            print(f"   📈 Interest Level: {starter.user_interest_level}")
 
-        if len(state["conversation_starters"]) > 15:
+            if starter.research_enhanced:
+                print(f"   🔬 Research: Enhanced with internet research")
+                print(f"   📚 Sources: {len(starter.sources)} sources")
+                if starter.sources:
+                    print(
+                        f"   🔗 URLs: {', '.join(starter.sources[:2])}{'...' if len(starter.sources) > 2 else ''}"
+                    )
+            else:
+                print(f"   🔬 Research: Based on conversation history")
+
+            print(f"   🧠 Psychology: {starter.comeback_psychology}")
+            print(f"   ⚡ Strategy: {starter.engagement_strategy}")
+
+        if len(state["conversation_starters"]) > 10:
             print(
-                f"\n... and {len(state['conversation_starters']) - 15} more conversation starters (ranks 16-30)"
+                f"\n... and {len(state['conversation_starters']) - 10} more conversation starters available"
             )
+            print("\n📈 SUMMARY OF REMAINING STARTERS:")
+            for starter in state["conversation_starters"][10:15]:
+                print(
+                    f"   {starter.rank}. {starter.starter} ({starter.value_category}, {starter.mood}, {starter.predicted_engagement_score}/10)"
+                )
+            if len(state["conversation_starters"]) > 15:
+                print(f"   ... and {len(state['conversation_starters']) - 15} more")
 
         print("\n" + "=" * 60)
         print("✅ ANALYSIS COMPLETE!")
@@ -160,27 +186,49 @@ def get_conversation_followup_workflow(model_name="o3"):
 if __name__ == "__main__":
     import asyncio
 
-    get_user_conversations_for_workflow = (
-        chat_retrieval.get_user_conversations_for_workflow
-    )
-
     async def test_workflow():
         print("🚀 Starting Intelligent Conversation Follow-Up System")
         print("=" * 60)
 
-        # Get real user conversations from database
+        # Read conversation from raw_conversation.txt file
         user_id = "Uojc2mPrSHXzWaGkqRtBsT8xCYb2"  # Default user ID
-        print(f"🔍 Fetching conversations for user: {user_id}")
+        print(f"🔍 Reading conversation from raw_conversation.txt file")
 
-        real_conversations = get_user_conversations_for_workflow(
-            user_id=user_id, days=30, min_conversations=5
-        )
+        try:
+            with open("raw_conversation.txt", "r", encoding="utf-8") as file:
+                raw_conversation_content = file.read()
 
-        if not real_conversations:
-            print(
-                "❌ No sufficient conversation data found. Using sample data for testing."
-            )
-            # Fallback to sample data if no real conversations
+            # Convert the timestamp-formatted conversation to simple dialogue format
+            lines = raw_conversation_content.split("\n")
+            conversation_parts = []
+            current_conversation = []
+
+            for line in lines:
+                line = line.strip()
+                if not line:
+                    continue
+
+                # Extract the actual message content from timestamp format
+                if "] Agent:" in line:
+                    message = line.split("] Agent:", 1)[1].strip()
+                    current_conversation.append(f"agent: {message}")
+                elif "] User:" in line:
+                    message = line.split("] User:", 1)[1].strip()
+                    current_conversation.append(f"user: {message}")
+
+            # Join all conversation parts into one big conversation
+            if current_conversation:
+                real_conversations = ["\n".join(current_conversation)]
+                print(
+                    f"✅ Successfully loaded conversation with {len(current_conversation)} messages"
+                )
+            else:
+                raise Exception("No valid conversation messages found")
+
+        except Exception as e:
+            print(f"❌ Error reading raw_conversation.txt: {e}")
+            print("📝 Using sample data for testing.")
+            # Fallback to sample data if file reading fails
             real_conversations = [
                 "user: What is a turnpike? I've been wondering about this for a while.\nagent: A turnpike is a toll road, especially in the northeastern United States. They're called turnpikes because historically, they had gates that would turn to let traffic through after paying the toll.\nuser: Oh that's really interesting! I never knew the etymology. What about blind spots when driving?\nagent: Blind spots are areas around your vehicle that you cannot see in your mirrors or through your windows directly. They're typically located to the sides and rear of your vehicle.\nuser: Got it, that's very helpful! I'm learning so much about driving today."
             ]
