@@ -218,7 +218,7 @@ def get_conversation_followup_workflow(model_name="o3"):
             model="gpt-image-1",
             prompt=state["conversation_starters"][0].starter,
             n=1,
-            size="1024x1024",
+            size="300x300",
             output_format="png",
         )
         # Encode the image to base64
