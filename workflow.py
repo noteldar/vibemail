@@ -3,7 +3,10 @@ import importlib.util
 import json
 import logging
 import os
+import smtplib
 import sys
+from email.mime.multipart import MIMEMultipart
+from email.mime.text import MIMEText
 from typing import Annotated, List, TypedDict
 
 import dotenv
@@ -53,6 +56,7 @@ class ConversationFollowUpState(TypedDict):
     conversation_segments: List[ConversationSegment]
     top_segments: List[ConversationSegment]
     conversation_starters: List[ConversationStarter]
+    email_content: str
 
 
 def get_conversation_followup_workflow(model_name="o3"):
@@ -79,7 +83,7 @@ def get_conversation_followup_workflow(model_name="o3"):
             result = await agent_segmenter_rater.run(
                 "Please analyze this conversation.", deps=deps
             )
-            segments = result.data.segments
+            segments = result.output.segments
             all_segments.extend(segments)
 
         logger.info(f"Created {len(all_segments)} conversation segments total")
@@ -98,7 +102,7 @@ def get_conversation_followup_workflow(model_name="o3"):
         deps = StarterGeneratorDeps(top_segments=state["top_segments"])
 
         result = await agent_starter_generator.run(deps=deps)
-        starters = result.data
+        starters = result.data if isinstance(result.data, list) else [result.data]
 
         logger.info(f"Generated {len(starters)} conversation starters")
 
@@ -199,7 +203,7 @@ def get_conversation_followup_workflow(model_name="o3"):
         )
         result = await make_email_content_agent().run(deps=deps)
 
-        return state
+        return {"email_content": result.output}
 
     async def node_generate_email_generation(state: ConversationFollowUpState):
         """Node 4: Generate email generation from email content"""
@@ -222,6 +226,51 @@ def get_conversation_followup_workflow(model_name="o3"):
         result.output.email_html = result.output.email_html.replace(
             "[BASE64_DATA]", image_base64
         )
+
+        # Send email via Gmail SMTP
+        logger.info("Sending email via Gmail SMTP")
+        try:
+            # Get email credentials from environment variables
+            gmail_user = os.getenv("GMAIL_FROM")
+            gmail_password = os.getenv("GMAIL_PASSWORD")
+            to_email = os.getenv("GMAIL_TO")
+
+            if not gmail_user or not gmail_password or not to_email:
+                logger.error(
+                    "Missing required environment variables: GMAIL_FROM, GMAIL_PASSWORD, GMAIL_TO"
+                )
+                raise ValueError("Email credentials not found in environment variables")
+
+            # Create message
+            msg = MIMEMultipart("alternative")
+            msg["Subject"] = (
+                f"Conversation Follow-up: {state['conversation_starters'][0].segment_topic}"
+            )
+            msg["From"] = gmail_user
+            msg["To"] = to_email
+
+            # Create HTML part
+            html_part = MIMEText(result.output.email_html, "html")
+            msg.attach(html_part)
+
+            # Connect to Gmail SMTP server
+            server = smtplib.SMTP("smtp.gmail.com", 587)
+            server.starttls()  # Enable TLS encryption
+            server.login(gmail_user, gmail_password)
+
+            # Send email
+            text = msg.as_string()
+            server.sendmail(gmail_user, to_email, text)
+            server.quit()
+
+            logger.info(f"✅ Email sent successfully to {to_email}")
+            print(f"📧 Email sent successfully to {to_email}")
+
+        except Exception as e:
+            logger.error(f"❌ Failed to send email: {str(e)}")
+            print(f"❌ Failed to send email: {str(e)}")
+            # Don't raise the exception to prevent workflow failure
+            # The email generation was successful even if sending failed
 
         return state
 
@@ -314,7 +363,7 @@ if __name__ == "__main__":
             conversation_segments=[],
             top_segments=[],
             conversation_starters=[],
-            email_content=[],
+            email_content="",
         )
 
         print("🤖 Running AI workflow...")

@@ -140,7 +140,7 @@ OUTPUT: Generate top ranked conversation starter. It must include all required f
         model=model,
         deps_type=StarterGeneratorDeps,
         system_prompt=system_prompt,
-        output_type=ConversationStarter,
+        output_type=ConversationStarterList,
     )
 
     @agent.tool
