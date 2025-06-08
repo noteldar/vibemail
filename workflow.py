@@ -7,12 +7,14 @@ import smtplib
 import sys
 from email.mime.multipart import MIMEMultipart
 from email.mime.text import MIMEText
+from io import BytesIO
 from typing import Annotated, List, TypedDict
 
 import dotenv
 from langgraph.checkpoint.memory import MemorySaver
 from langgraph.graph import END, START, StateGraph
 from openai import OpenAI
+from PIL import Image
 
 import chat_retrieval
 from agents import chat_segmenter_rater, conversation_starter_generator, email_agent
@@ -218,14 +220,18 @@ def get_conversation_followup_workflow(model_name="o3"):
             model="gpt-image-1",
             prompt=state["conversation_starters"][0].starter,
             n=1,
-            size="300x300",
+            size="1024x1024",
             output_format="png",
         )
-        # Encode the image to base64
+        # resize to 300x300 using PIL
         image_base64 = img.data[0].b64_json
+        imgb = Image.open(BytesIO(base64.b64decode(image_base64)))
+        imgb = imgb.resize((300, 300))
+        # Encode the image to base64
+        new_image_base64 = base64.b64encode(imgb.tobytes()).decode("utf-8")
 
         result.output.email_html = result.output.email_html.replace(
-            "[BASE64_DATA]", image_base64
+            "[BASE64_DATA]", new_image_base64
         )
 
         # Send email via Gmail SMTP
